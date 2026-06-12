@@ -1,0 +1,31 @@
+# Compiled binaries and main executables
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test artifacts and coverage profiles
+*.out
+*.test
+*.prof
+c.out
+coverage.txt
+
+# Dependency directories
+# Only uncomment vendor/ if you do not want to commit your vendored dependencies
+# vendor/
+
+# Local environment variables and secrets
+.env
+.env.local
+
+# IDE and Editor specific configurations
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
