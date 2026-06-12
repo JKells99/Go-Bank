@@ -1,11 +1,30 @@
 package main
 
 import "fmt"
+import "os"
+import "strconv"
+
+const balanceFile = "balance.txt"
+func writeBalanceToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile(balanceFile,[]byte(balanceText), 0644)
+
+
+}
+
+func readBalanceFromFile() float64 {
+	data ,_ := os.ReadFile(balanceFile)
+	balanceText := string(data)
+	balance, _ := strconv.ParseFloat(balanceText, 64)
+
+	return balance
+}
 
 func main() {
-	for {
-	var accountBalance = 1000.00
+	var accountBalance float64 = readBalanceFromFile()
 	fmt.Println("Welcome to the bank")
+	for {
+	
 	fmt.Println("What do you want to do?? ")
 	fmt.Println("1. Check balance")
 	fmt.Println("2. Deposit money")
@@ -19,6 +38,7 @@ func main() {
 
 	if choice == 1{
 		fmt.Println("Your account balance is:", accountBalance)
+		writeBalanceToFile(accountBalance)
 
 
 	}else if choice == 2{
@@ -32,6 +52,7 @@ func main() {
 		}
 		accountBalance += depositAmount
 		fmt.Println("Your account balance is now:", accountBalance)
+		writeBalanceToFile(accountBalance)
 
 	}else if choice == 3{
 		fmt.Println("Enter Amount to withdraw:")
@@ -43,6 +64,7 @@ func main() {
 		}else{
 			accountBalance -= withdrawAmount
 			fmt.Println("Your account balance is now:", accountBalance)
+			writeBalanceToFile(accountBalance)
 		}
 	} else{
 		fmt.Println("Thank you for using the bank. Goodbye!")
